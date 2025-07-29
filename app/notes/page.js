@@ -1,6 +1,5 @@
 'use client'
 import Editor from "@/components/Editor"
-import html2pdf from "html2pdf.js";
 import { marked } from "marked";
 import React from "react";
 import Mdx from "@/components/Mdx"
@@ -78,7 +77,7 @@ export default function NotesPage() {
             setSavingNote(false)
         }
     }
-    function handlePdfDownload() {
+    async function handlePdfDownload() {
     if (!note?.content) return;
 
     const htmlContent = marked.parse(note.content);
@@ -87,6 +86,8 @@ export default function NotesPage() {
     element.innerHTML = htmlContent;
     element.style.padding = "20px";
     element.style.color = "#000"; // Ensure black text on white PDF
+
+    const html2pdf = (await import("html2pdf.js")).default;
 
     html2pdf()
         .set({
