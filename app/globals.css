@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: 'Eczar', serif;
+}
+
+h1 {
+  font-family: 'Grenze', serif;
+}
+
+/* GENERAL */
+
+#app{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* HERO */
+
+#hero {
+    display: grid;
+    grid-template-columns: repeat(1,minmax(0,1fr));
+}
+
+#hero > div{
+    padding: 2rem;
+}
+
+.hero-img {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;    
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.hero-img img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.login-container input{
+    width: 100%;
+    padding: 0.75rem;
+    max-width: unset;
+}
+
+.submit-btn {
+    width: 100%;
+    max-width: unset;
+    display: grid;
+    place-items: center;
+    padding: 0.5rem;
+}
+
+.secondary-btns-container {
+    display: flex;
+    justify-content: center;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 4rem;
+}
+
+.secondary-btns-container button {
+    white-space: nowrap;
+    cursor: pointer;
+    width: 100%;
+    max-width: unset;
+    padding: 0.75rem 0.75rem;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-right: 0.75rem;
+    border: 1px solid transparent;
+    text-decoration: none;
+}
+
+/* DASHBOARD */
+#notes{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(1,minmax(0,1fr));
+    flex:1;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.nav,
+.notes-container,
+.mdx-container {
+    padding: 2rem;  
+}
+
+.notes-btn{
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.notes-btn button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.nav{
+    border-right: 1px solid var(--border-primary);
+    flex-direction: column;
+    display: flex;
+    gap:1rem;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    top:0;
+    min-width: 65%;
+    max-width: 40%;
+    background: var(--background-primary);
+    z-index: 10;
+}
+
+.hidden-nav{
+    display: none !important;
+}
+
+.nav button{
+    width: 100%;
+    max-width: unset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.nav .notes-list{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+}
+.nav .notes-list::-webkit-scrollbar {
+  display: none;    
+}
+.notes-list button{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.25rem !important;
+    text-transform: capitalize;
+    overflow: hidden;
+    padding: 0.5rem;
+    min-height: fit-content;
+
+}
+
+.notes-list button p{
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis ;
+    overflow: hidden;
+}
+
+.list-btn{
+    position: relative;
+}
+
+.delete-btn{
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition-duration: 200ms;
+}
+
+.list-btn:hover .delete-btn{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.list-btn:hover .delete-btn:hover{
+    color: #ff4e7a;
+}
+
+.notes-container, .mdx-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.notes-container textarea{
+    flex:1;
+    max-height: unset;
+    max-width: unset;
+    border: none;
+    resize: none;
+    background: none;
+}
+
+/* UTILITY */
+.full-line{
+    height: 2px;
+    width: 100%;
+    background: var(--color-link-transparent);
+}
+
+@media (min-width: 640px) {
+    #hero{
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        flex:1;
+    }
+
+    .hero-img{
+        position:sticky;
+        max-height: 100vh;
+    }
+}
+
+@media (min-width: 768px) {
+    #notes{
+        grid-template-columns: repeat(3,minmax(0,1fr));
+        flex:1;
+    }
+
+    .nav{
+        position: relative;
+        max-width: unset;
+    }
+
+    .hidden-nav{
+        display: flex !important;
+    }
+    .menu{
+        display: none !important;
+    }
+    .notes-container, .mdx-container{
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero{
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    }
+
+    .hero-img{
+        grid-column: span 2 / span 2;
+    }
+
+    #notes{
+        grid-template-columns: repeat(4,minmax(0,1fr));
+    }
+
+    .notes-container, .mdx-container{
+        grid-column: span 3;
+    }   
+}
